@@ -3,13 +3,11 @@ from streamlit_chat import message
 from bardapi import Bard
 import json
 
-#Function to generate the output
 def generate_response(prompt):
     bard = Bard(token=token)
     response = bard.get_answer(prompt)['content']
     return response
 
-#Function to receive user queries
 def get_text():
     input_text = st.text_input("CN Bot", "Hey! ", key='input')
     return input_text
@@ -18,11 +16,8 @@ with open('credentials.json', 'r') as f:
     file = json.load(f)
     token = file['token']
     
-# TItle of the streamlit app
-st.title('Personal Tutoring Bot!')
+st.title('Personal Bot!')
 
-# url = 'https://images.unsplash.com/photo-1509773896068-7fd415d91e2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80'
-# data-testid = "stAppViewContainer"
 changes = '''
 <style>
 [data-testid = "stAppViewContainer"]
@@ -45,7 +40,6 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 
 
-#Accepting user input
 user_input = get_text()
 if user_input:
 
